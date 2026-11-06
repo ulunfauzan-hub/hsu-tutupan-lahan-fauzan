@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perubahan Tutupan Lahan Kabupaten Hulu Sungai Utara 2021-2026</title>
+<style>
+  :root{
+    --bg:#eef2f3; --surface:#ffffff; --ink:#16282b; --muted:#4f6468; --line:#cfdadc;
+    --accent:#0b5c66; --warn-bg:#fff4dc; --warn-line:#d9a21b;
+    --air:#0066ff; --terbangun:#ff0000; --terbuka:#e5c07b; --sawah:#b5e61d; --hutan:#006400;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#10191b; --surface:#172326; --ink:#e6eef0; --muted:#9fb3b7; --line:#2b3c40;
+      --accent:#6fc3cf; --warn-bg:#2d2610; --warn-line:#b88a1a; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.2;font-weight:700}
+  a{color:var(--accent)}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+  header{padding:40px 0 24px}
+  header h1{font-size:clamp(1.9rem,5vw,3rem);margin:0 0 12px;max-width:18em}
+  header p{max-width:60ch;color:var(--muted);margin:0}
+  nav{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface)}
+  nav .wrap{display:flex;gap:20px;overflow-x:auto;padding-top:10px;padding-bottom:10px}
+  nav a{white-space:nowrap;text-decoration:none;font-size:.95rem}
+  section{padding:40px 0 8px}
+  section h2{font-size:1.6rem;margin:0 0 8px}
+  .lead{max-width:62ch;color:var(--muted);margin:0 0 20px}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  figure{margin:0;background:var(--surface);border:1px solid var(--line);padding:10px}
+  figure img{display:block;width:100%;height:auto;min-height:160px;background:var(--bg)}
+  figcaption{font-size:.9rem;color:var(--muted);padding-top:8px}
+  figcaption strong{color:var(--ink)}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:16px 0 0;padding:0;list-style:none;font-size:.92rem}
+  .legend i{display:inline-block;width:14px;height:14px;margin-right:6px;vertical-align:-2px;border:1px solid rgba(0,0,0,.3)}
+  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+  .tablebox{overflow-x:auto;background:var(--surface);border:1px solid var(--line)}
+  table{border-collapse:collapse;width:100%;min-width:680px;font-size:.93rem}
+  th,td{padding:9px 12px;text-align:right;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+  th:first-child,td:first-child{text-align:left}
+  thead th{background:var(--bg);font-weight:600}
+  tfoot td{font-weight:600}
+  .neg{color:#b3261e} .pos{color:#1a6b2c}
+  @media (prefers-color-scheme: dark){ .neg{color:#ff8a80} .pos{color:#7ad98f} }
+  .flag{background:var(--warn-bg)}
+  td .sw{display:inline-block;width:11px;height:11px;margin-right:8px;border:1px solid rgba(0,0,0,.3)}
+  .chart{background:var(--surface);border:1px solid var(--line);padding:14px}
+  .chart svg{width:100%;height:auto;display:block}
+  .chart text{fill:var(--muted);font-size:12px;font-family:system-ui,sans-serif}
+  .note{background:var(--warn-bg);border-left:4px solid var(--warn-line);padding:14px 18px;margin:0 0 20px;max-width:75ch}
+  .note p{margin:0}
+  ul.limit{max-width:75ch;padding-left:20px}
+  ul.limit li{margin-bottom:12px}
+  details{background:var(--surface);border:1px solid var(--line);padding:12px 16px;max-width:75ch}
+  summary{cursor:pointer;font-weight:600}
+  footer{margin-top:48px;padding:24px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+  @media (max-width:640px){ .compare{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Perubahan tutupan lahan Kabupaten Hulu Sungai Utara, 2021-2026</h1>
+    <p>Klasifikasi citra Landsat 8 dan 9 dengan Random Forest di Google Earth Engine. Halaman ini statis: semua angka dan gambar berasal dari hasil analisis yang sudah dijalankan.</p>
+  </div>
+</header>
+
+<nav aria-label="Navigasi halaman">
+  <div class="wrap">
+    <a href="#peta">Peta</a>
+    <a href="#tabel">Tabel luas</a>
+    <a href="#grafik">Grafik</a>
+    <a href="#galeri">Semua tahun</a>
+    <a href="#keterbatasan">Keterbatasan</a>
+    <a href="#metode">Metode</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section id="peta">
+  <h2>Peta tutupan lahan 2021 dan 2026</h2>
+  <p class="lead">Bandingkan kedua peta. Area yang berubah kelas di antara dua tahun itu ditandai merah pada peta perubahan di bawahnya.</p>
+  <div class="compare">
+    <figure>
+      <img src="lc_2021.png" alt="Peta tutupan lahan HSU tahun 2021" loading="lazy">
+      <figcaption><strong>2021</strong></figcaption>
+    </figure>
+    <figure>
+      <img src="lc_2026.png" alt="Peta tutupan lahan HSU tahun 2026" loading="lazy">
+      <figcaption><strong>2026</strong></figcaption>
+    </figure>
+  </div>
+  <figure style="margin-top:16px;max-width:520px">
+    <img src="perubahan_2021_2026.png" alt="Peta area yang berubah kelas antara 2021 dan 2026, ditandai merah" loading="lazy">
+    <figcaption><strong>Area berubah 2021 ke 2026</strong> (merah). Sebagian besar kemungkinan efek musim dan kesalahan klasifikasi, lihat bagian keterbatasan.</figcaption>
+  </figure>
+  <ul class="legend" aria-label="Legenda">
+    <li><i style="background:var(--air)"></i>Badan air</li>
+    <li><i style="background:var(--terbangun)"></i>Lahan terbangun</li>
+    <li><i style="background:var(--terbuka)"></i>Lahan terbuka</li>
+    <li><i style="background:var(--sawah)"></i>Vegetasi rendah / sawah</li>
+    <li><i style="background:var(--hutan)"></i>Vegetasi rapat / hutan</li>
+  </ul>
+</section>
+
+<section id="tabel">
+  <h2>Luas per kelas (hektar)</h2>
+  <p class="lead">Baris berlatar kuning adalah kelas yang angkanya tidak stabil antartahun. Jangan dibaca sebagai perubahan nyata.</p>
+  <div class="tablebox">
+    <table id="tbl">
+      <thead></thead><tbody></tbody><tfoot></tfoot>
+    </table>
+  </div>
+</section>
+
+<section id="grafik">
+  <h2>Komposisi per tahun</h2>
+  <p class="lead">Tinggi tiap batang adalah total wilayah (sekitar 87.490 ha). Yang berubah hanya pembagian warnanya.</p>
+  <div class="chart"><svg id="stack" viewBox="0 0 760 360" role="img" aria-label="Grafik batang bertumpuk luas tutupan lahan 2021 sampai 2026"></svg></div>
+  <ul class="legend" aria-label="Legenda grafik">
+    <li><i style="background:var(--air)"></i>Badan air</li>
+    <li><i style="background:var(--terbangun)"></i>Lahan terbangun</li>
+    <li><i style="background:var(--terbuka)"></i>Lahan terbuka</li>
+    <li><i style="background:var(--sawah)"></i>Vegetasi rendah / sawah</li>
+    <li><i style="background:var(--hutan)"></i>Vegetasi rapat / hutan</li>
+  </ul>
+</section>
+
+<section id="galeri">
+  <h2>Peta semua tahun</h2>
+  <div class="gallery">
+    <figure><img src="lc_2021.png" alt="Tutupan lahan 2021" loading="lazy"><figcaption>2021</figcaption></figure>
+    <figure><img src="lc_2022.png" alt="Tutupan lahan 2022" loading="lazy"><figcaption>2022</figcaption></figure>
+    <figure><img src="lc_2023.png" alt="Tutupan lahan 2023" loading="lazy"><figcaption>2023</figcaption></figure>
+    <figure><img src="lc_2024.png" alt="Tutupan lahan 2024" loading="lazy"><figcaption>2024</figcaption></figure>
+    <figure><img src="lc_2025.png" alt="Tutupan lahan 2025" loading="lazy"><figcaption>2025</figcaption></figure>
+    <figure><img src="lc_2026.png" alt="Tutupan lahan 2026" loading="lazy"><figcaption>2026</figcaption></figure>
+  </div>
+</section>
+
+<section id="keterbatasan">
+  <h2>Keterbatasan</h2>
+  <div class="note">
+    <p><strong>Baca angka perubahan dengan hati-hati.</strong> Hasil ini cocok sebagai gambaran awal, bukan dasar keputusan atau pelaporan resmi tanpa validasi lapangan.</p>
+  </div>
+  <ul class="limit">
+    <li><strong>Lahan terbangun tidak stabil.</strong> Luasnya naik turun dari sekitar 3.800 ha (2021) ke 14.588 ha (2023), turun ke sekitar 5.100 ha (2024-2025), lalu 23.516 ha (2026). Lonjakan sebesar ini tidak masuk akal sebagai pembangunan nyata, sehingga angka perubahan +517% adalah artefak klasifikasi.</li>
+    <li><strong>Label latih bukan data lapangan.</strong> Sampel latih diambil otomatis dari ESA WorldCover 2021, bukan survei. Akurasi yang dihitung hanya mengukur kecocokan dengan WorldCover, dan model mewarisi kesalahan peta itu.</li>
+    <li><strong>Model dilatih dari satu tahun (2022).</strong> Pada tahun dengan kondisi berbeda, misalnya kemarau panjang El Niño 2023, lahan kering atau terbuka bisa salah dikenali sebagai terbangun.</li>
+    <li><strong>Rawa musiman.</strong> Luas badan air dan vegetasi bergantung pada tinggi muka air saat citra diambil. Perbedaan antartahun sebagian besar mencerminkan musim, bukan perubahan permanen.</li>
+    <li><strong>Resolusi 30 m.</strong> Rumah, jalan kecil, dan sawah bercampur dalam satu piksel, sehingga kelas terbangun sulit dipisahkan.</li>
+    <li><strong>Citra 2021 lebih sedikit.</strong> Landsat 9 baru beroperasi sejak akhir 2021, jadi 2021 memakai gabungan Landsat 8 dan 9 dengan 18 citra pada Juni-Oktober (tahun lain 42-55). Tahun 2026 juga belum setahun penuh.</li>
+    <li><strong>Batas wilayah dari FAO GAUL 2015</strong>, bukan batas resmi BIG, sehingga luas total (sekitar 87.490 ha) bisa sedikit berbeda dari angka administratif.</li>
+  </ul>
+  <p class="lead">Angka yang relatif lebih bisa dipercaya adalah urutan besar kelas dominan: vegetasi rendah/sawah dan vegetasi rapat/hutan menutup sebagian besar wilayah di semua tahun.</p>
+</section>
+
+<section id="metode">
+  <h2>Metode</h2>
+  <details open>
+    <summary>Ringkasan alur analisis</summary>
+    <ul>
+      <li>Data: Landsat 8 dan 9 Collection 2 Level 2 (reflektansi permukaan), komposit median Juni-Oktober tiap tahun, celah diisi komposit setahun penuh.</li>
+      <li>Masking awan dan bayangan memakai band QA_PIXEL.</li>
+      <li>Fitur: band biru, hijau, merah, NIR, SWIR1, SWIR2, serta NDVI, MNDWI, NDBI.</li>
+      <li>Label latih: ESA WorldCover v200 (2021) dipetakan ke 5 kelas, 500 titik acak per kelas dari komposit 2022, dibagi 70% latih dan 30% uji.</li>
+      <li>Pengklasifikasi: Random Forest (150 pohon).</li>
+      <li>Luas dihitung per piksel (30 m) dalam hektar.</li>
+    </ul>
+  </details>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">Dibuat dengan Google Earth Engine dan Python. Data: USGS Landsat, ESA WorldCover, FAO GAUL.</div>
+</footer>
+
+<script>
+const years = [2021,2022,2023,2024,2025,2026];
+const classes = [
+  {n:'Badan Air', c:'#0066ff', v:[5873.1,9318.1,4743.4,4722.4,4581.2,2631.1], flag:false},
+  {n:'Lahan Terbangun', c:'#ff0000', v:[3809.8,4346.2,14588.1,5361.1,5126.8,23515.7], flag:true},
+  {n:'Lahan Terbuka', c:'#e5c07b', v:[1277.0,1588.2,1877.1,1309.2,1008.6,1676.5], flag:false},
+  {n:'Vegetasi Rendah/Sawah', c:'#b5e61d', v:[32465.4,39653.3,40379.2,36966.2,41962.8,34436.9], flag:false},
+  {n:'Vegetasi Rapat/Hutan', c:'#006400', v:[44068.7,32475.8,25906.4,39135.0,34806.2,25233.8], flag:false}
+];
+const fmt = n => n.toLocaleString('id-ID',{maximumFractionDigits:0});
+const fmt1 = n => n.toLocaleString('id-ID',{minimumFractionDigits:1,maximumFractionDigits:1});
+
+const thead = document.querySelector('#tbl thead');
+thead.innerHTML = '<tr><th>Kelas</th>' + years.map(y=>'<th>'+y+'</th>').join('') +
+  '<th>Perubahan (ha)</th><th>Perubahan (%)</th></tr>';
+const tbody = document.querySelector('#tbl tbody');
+classes.forEach(k=>{
+  const d = k.v[5]-k.v[0], p = d/k.v[0]*100;
+  const cls = d<0?'neg':'pos';
+  const sign = d>0?'+':'';
+  tbody.insertAdjacentHTML('beforeend',
+    '<tr'+(k.flag?' class="flag"':'')+'><td><span class="sw" style="background:'+k.c+'"></span>'+k.n+(k.flag?' (tidak stabil)':'')+'</td>'+
+    k.v.map(x=>'<td>'+fmt(x)+'</td>').join('')+
+    '<td class="'+cls+'">'+sign+fmt(d)+'</td><td class="'+cls+'">'+sign+fmt1(p)+'%</td></tr>');
+});
+const totals = years.map((_,i)=>classes.reduce((s,k)=>s+k.v[i],0));
+document.querySelector('#tbl tfoot').innerHTML =
+  '<tr><td>Total</td>'+totals.map(t=>'<td>'+fmt(t)+'</td>').join('')+'<td></td><td></td></tr>';
+
+(function(){
+  const svg = document.getElementById('stack');
+  const W=760,H=360,L=64,R=16,T=16,B=36;
+  const max = 90000, ch = H-T-B, cw = W-L-R;
+  let out='';
+  for(let g=0; g<=90000; g+=30000){
+    const y = T + ch - g/max*ch;
+    out += '<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y+'" y2="'+y+'" stroke="currentColor" opacity=".15"/>';
+    out += '<text x="'+(L-8)+'" y="'+(y+4)+'" text-anchor="end">'+fmt(g)+'</text>';
+  }
+  const bw = cw/years.length*0.6;
+  years.forEach((yr,i)=>{
+    const x = L + cw/years.length*i + (cw/years.length-bw)/2;
+    let acc=0;
+    classes.forEach(k=>{
+      const h = k.v[i]/max*ch, y = T+ch-acc-h;
+      out += '<rect x="'+x+'" y="'+y+'" width="'+bw+'" height="'+h+'" fill="'+k.c+'"><title>'+yr+' '+k.n+': '+fmt(k.v[i])+' ha</title></rect>';
+      acc += h;
+    });
+    out += '<text x="'+(x+bw/2)+'" y="'+(H-12)+'" text-anchor="middle">'+yr+'</text>';
+  });
+  out += '<text x="14" y="'+(T+ch/2)+'" transform="rotate(-90 14 '+(T+ch/2)+')" text-anchor="middle">Hektar</text>';
+  svg.innerHTML = out;
+})();
+</script>
+</body>
+</html>
