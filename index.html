@@ -86,7 +86,7 @@
 
 <section id="peta">
   <h2>Peta tutupan lahan 2021 dan 2026</h2>
-  <p class="lead">Bandingkan kedua peta. Area yang berubah kelas di antara dua tahun itu ditandai merah pada peta perubahan di bawahnya.</p>
+  <p class="lead">Bandingkan kedua peta. Area yang berubah kelas di antara dua tahun itu ditandai merah pada peta perubahan 2021 -2026 di bawahnya.</p>
   <div class="compare">
     <figure>
       <img src="lc_2021.png" alt="Peta tutupan lahan HSU tahun 2021" loading="lazy">
@@ -112,7 +112,7 @@
 
 <section id="tabel">
   <h2>Luas per kelas (hektar)</h2>
-  <p class="lead">Baris berlatar kuning adalah kelas yang angkanya tidak stabil antartahun. Jangan dibaca sebagai perubahan nyata.</p>
+  <p class="lead">Baris berlatar kuning adalah kelas yang angkanya tidak stabil antartahun. Jangan dibaca sebagai perubahan nyata karena kemungkinan ada kesalahn pembacaan dari satelit.</p>
   <div class="tablebox">
     <table id="tbl">
       <thead></thead><tbody></tbody><tfoot></tfoot>
@@ -151,15 +151,15 @@
     <p><strong>Baca angka perubahan dengan hati-hati.</strong> Hasil ini cocok sebagai gambaran awal, bukan dasar keputusan atau pelaporan resmi tanpa validasi lapangan.</p>
   </div>
   <ul class="limit">
-    <li><strong>Lahan terbangun tidak stabil.</strong> Luasnya naik turun dari sekitar 3.800 ha (2021) ke 14.588 ha (2023), turun ke sekitar 5.100 ha (2024-2025), lalu 23.516 ha (2026). Lonjakan sebesar ini tidak masuk akal sebagai pembangunan nyata, sehingga angka perubahan +517% adalah artefak klasifikasi.</li>
-    <li><strong>Label latih bukan data lapangan.</strong> Sampel latih diambil otomatis dari ESA WorldCover 2021, bukan survei. Akurasi yang dihitung hanya mengukur kecocokan dengan WorldCover, dan model mewarisi kesalahan peta itu.</li>
-    <li><strong>Model dilatih dari satu tahun (2022).</strong> Pada tahun dengan kondisi berbeda, misalnya kemarau panjang El Niño 2023, lahan kering atau terbuka bisa salah dikenali sebagai terbangun.</li>
-    <li><strong>Rawa musiman.</strong> Luas badan air dan vegetasi bergantung pada tinggi muka air saat citra diambil. Perbedaan antartahun sebagian besar mencerminkan musim, bukan perubahan permanen.</li>
-    <li><strong>Resolusi 30 m.</strong> Rumah, jalan kecil, dan sawah bercampur dalam satu piksel, sehingga kelas terbangun sulit dipisahkan.</li>
-    <li><strong>Citra 2021 lebih sedikit.</strong> Landsat 9 baru beroperasi sejak akhir 2021, jadi 2021 memakai gabungan Landsat 8 dan 9 dengan 18 citra pada Juni-Oktober (tahun lain 42-55). Tahun 2026 juga belum setahun penuh.</li>
-    <li><strong>Batas wilayah dari FAO GAUL 2015</strong>, bukan batas resmi BIG, sehingga luas total (sekitar 87.490 ha) bisa sedikit berbeda dari angka administratif.</li>
+    <li><strong>Fluktuasi Lahan terbangun tidak stabil.</strong>Terjadi fluktuasi lahan terbangun dari sekitar 3.800 ha (2021) ke 14.588 ha (2023), turun ke sekitar 5.100 ha (2024-2025), lalu mencapai 23.516 ha (2026). Lonjakan sebesar ini tidak masuk akal sebagai pembangunan nyata, kemungkinan kesalahan klasifikasi piksel.</li>
+    <li><strong>Validasi Data latih(training data).</strong> Sampel latih diambil otomatis dari ESA WorldCover 2021, bukan survei. Akurasi yang dihitung hanya mengukur kecocokan dengan WorldCover, dan model mewarisi kesalahan peta itu.</li>
+    <li><strong>Efek Fenomena musiman (2022).</strong> Model dilatih menggunakan sampel 2022. Pada tahun dengan kondisi berbeda, misalnya kemarau panjang El Niño 2023, lahan kering atau terbuka bisa salah dikenali sebagai terbangun.</li>
+    <li><strong>Dinamika Lahan Basah/Rawa musiman.</strong> Luas badan air dan vegetasi bergantung pada tinggi muka air saat citra diambil. Perbedaan antartahun sebagian besar mencerminkan musim, bukan perubahan permanen.</li>
+    <li><strong>Keterbatasan Resolusi 30 m.</strong> Rumah, jalan kecil, dan sawah bercampur dalam satu piksel, sehingga kelas terbangun sulit dipisahkan.</li>
+    <li><strong>Ketersediaan Citra 2021 lebih sedikit.</strong> Landsat 9 baru beroperasi sejak akhir 2021, jadi 2021 memakai gabungan Landsat 8 dan 9 dengan 18 citra pada Juni-Oktober (tahun lain 42-55). Tahun 2026 juga belum setahun penuh.</li>
+    <li><strong>Batas Administrasi</strong>, Penggunaan batas wilayah dari data FAO GAUL 2015, bukan batas resmi BIG, sehingga luas total (sekitar 87.490 ha) bisa sedikit berbeda dari angka administratif.</li>
   </ul>
-  <p class="lead">Angka yang relatif lebih bisa dipercaya adalah urutan besar kelas dominan: vegetasi rendah/sawah dan vegetasi rapat/hutan menutup sebagian besar wilayah di semua tahun.</p>
+  <p class="lead">Hasil analisis yang memiliki tingkat kepercayan paling tinggi adalah kelas dominan dimana vegetasi rendah/sawah secara konsisten menutup sebagian besar wilayah di semua tahun.</p>
 </section>
 
 <section id="metode">
